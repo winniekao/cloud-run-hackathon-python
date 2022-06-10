@@ -36,7 +36,7 @@ def move():
     logger.info(request.json)
     data = request.json
     move_dir = get_can_move_list(data['arena']['state'])
-    return move_dir 
+    return moves[random.randrange(len(moves))] 
 
 def get_can_move_list(move_json):
     can_move_list = []
