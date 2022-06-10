@@ -42,7 +42,7 @@ def move():
 def get_can_move_list(move_json):
     can_move_list = []
     for each_url in move_json:
-     `   if move_json[each_url]['wasHit'] == True:
+        if move_json[each_url]['wasHit'] == True:
             can_move_list.append(move_dir(move_json[each_url]['direction']))
     if len(can_move_list)!=0:
         return random.choice(can_move_list)
