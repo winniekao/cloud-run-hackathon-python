@@ -32,8 +32,8 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
-    #request.get_data()
-    data = request.json()
+    request.get_data()
+    #data = request.json()
     logger.info(request.json)
     #data = request.json
     #move_dir = get_can_move_list(data['arena']['state'])
