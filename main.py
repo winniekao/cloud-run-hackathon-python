@@ -32,6 +32,17 @@ def index():
 def move():
     request.get_data()
     logger.info(request.json)
+    data = request.json
+    move_dir = get_can_move_list(data['arena']['state'])
+    return move_dir 
+
+def get_can_move_list(move_json):
+    can_move_list = []
+    for each_url in move_json:
+        if move_json[each_url]['wasHit'] == False:
+            can_move_list.append(move_json[each_url]['direction'])
+    if len(can_move_list)!=0:
+        return random.choice(can_move_list)
     return moves[random.randrange(len(moves))]
 
 if __name__ == "__main__":
