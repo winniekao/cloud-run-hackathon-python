@@ -22,7 +22,7 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-moves = ['F', 'T', 'L', 'R']
+moves = ['F', 'T', 'L', 'R', 'F', 'F']
 moves_dir = {'N':'R', 'S':'R', 'E':'F', 'W':'F'}
 
 
@@ -32,16 +32,17 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
-    request.get_data()
+    #request.get_data()
+    data = request.json()
     logger.info(request.json)
-    data = request.json
-    #move_dir = get_can_move_list(data['arena']['state'])
-    return moves[random.randrange(len(moves))] 
+    #data = request.json
+    move_dir = get_can_move_list(data['arena']['state'])
+    return move_dir 
 
 def get_can_move_list(move_json):
     can_move_list = []
     for each_url in move_json:
-        if move_json[each_url]['wasHit'] == True:
+     `   if move_json[each_url]['wasHit'] == True:
             can_move_list.append(move_dir(move_json[each_url]['direction']))
     if len(can_move_list)!=0:
         return random.choice(can_move_list)
